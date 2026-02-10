@@ -7,13 +7,22 @@ class Solution(object):
         """
       
         
+      
+        
         def score(player):
             total = 0
-            for i in range(len(player)):
-                if (i - 1 >= 0 and player[i - 1] == 10) or (i - 2 >= 0 and player[i - 2] == 10):
-                    total += 2 * player[i]
+            bonus = 0
+            
+            for pins in player:
+                if bonus > 0:
+                    total += 2 * pins
+                    bonus -= 1
                 else:
-                    total += player[i]
+                    total += pins
+                
+                if pins == 10:
+                    bonus = 2
+            
             return total
         
         s1 = score(player1)
@@ -25,3 +34,4 @@ class Solution(object):
             return 2
         else:
             return 0
+
